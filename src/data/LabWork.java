@@ -81,6 +81,9 @@ public class LabWork {
 
         name = testName;
     }
+
+    public Person getAuthor(){return author;}
+
     @Override
     public String toString(){
         return " | "
