@@ -5,14 +5,14 @@ import program.Program;
 
 import java.time.LocalDate;
 
-public class LabWork {
+public class LabWork implements Comparable<LabWork> {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private double minimalPoint; //Значение поля должно быть больше 0
     private Difficulty difficulty; //Поле может быть null
-    private Person author; //Поле не может быть null
+    private Person author;//Поле не может быть null
 
     public LabWork(){
         id = Generate.generateId();
@@ -84,6 +84,10 @@ public class LabWork {
 
     public Person getAuthor(){return author;}
 
+    private Integer getId() {
+        return id;
+    }
+
     @Override
     public String toString(){
         return " | "
@@ -97,4 +101,20 @@ public class LabWork {
                 + " | " ;
     }
 
+    @Override
+    public int compareTo(LabWork o) {
+        int nameCompare = Long.compare(this.name.length(),o.name.length());
+        if (nameCompare!=0){return nameCompare;}
+
+        int coordCompare = coordinates.compareTo(o.coordinates);
+        if (coordCompare!=0){return coordCompare;}
+
+        int minCompare = Double.compare(this.minimalPoint,o.minimalPoint);
+        if (minCompare!=0){return minCompare;}
+
+        int personCompare = author.compareTo(o.author);
+        if (personCompare!=0){return personCompare;}
+
+        return Integer.compare(this.id,o.id);
+    }
 }

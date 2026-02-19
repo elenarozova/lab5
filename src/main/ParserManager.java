@@ -19,6 +19,7 @@ public class ParserManager {
         commands.put("remove_key", new RemoveKey());
         commands.put("info", new Info());
         commands.put("remove_greater_key", new RemoveGreaterKey());
+        commands.put("remove_greater", new RemoveGreater());
     }
     public boolean parse(String line){
         String[] command = line.split(" ");

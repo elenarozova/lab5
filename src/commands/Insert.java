@@ -29,6 +29,8 @@ public class Insert implements Comands {
             }
         }
     }
+    public Integer getIdi(){return idi;}
+    public LabWork getLab(){return lab;}
 
 
 }
