@@ -87,6 +87,7 @@ public class LabWork implements Comparable<LabWork> {
     private Integer getId() {
         return id;
     }
+    public Double getMinimalPoint(){return minimalPoint;}
 
     @Override
     public String toString(){

@@ -16,9 +16,9 @@ public class Program {
         colman=new CollectionManager();
     }
     public void run(){
-        inout.write("Добо пожаловать, введите help, чтобы узнать о командах");
+        inout.write("Добро пожаловать, введите help, чтобы узнать о командах");
         while (true){
-            inout.write("Введите комманду:");
+            inout.write("Введите команду:");
             String line = inout.read();
             boolean flag= parser.parse(line);
             if (!flag){inout.write("Такой команды не существует");}
