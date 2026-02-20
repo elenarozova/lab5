@@ -22,6 +22,7 @@ public class ParserManager {
         commands.put("remove_greater", new RemoveGreater());
         commands.put("replace_if_lowe", new ReplaceIfLowe());
         commands.put("filter_less_than_minimal_point", new FilterLessThanMinimalPoint());
+        commands.put("print_unique_author", new PrintUniqueAuthor());
     }
     public boolean parse(String line){
         String[] command = line.split(" ");

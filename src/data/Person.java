@@ -77,8 +77,7 @@ public class Person implements Comparable<Person>{
                 +"имя: "+ name + ", "
                 +"рост: "+ height + ", "
                 +"вес: "+ weight + ", "
-                +"паспортные данные: "+ passportID + ", "
-                +" | ";
+                +"паспортные данные: "+ passportID ;
     }
 
     @Override
