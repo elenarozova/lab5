@@ -23,6 +23,15 @@ public class LabWork implements Comparable<LabWork> {
         setDifficult();
         author = new Person();
     }
+    public LabWork(Integer id, String name, Coordinates coordinates,LocalDate creationDate, Double minimalPoint,Difficulty difficulty, Person author){
+        this.id=id;
+        this.name = name;
+        this.coordinates=coordinates;
+        this.creationDate=creationDate;
+        this.minimalPoint=minimalPoint;
+        this.difficulty=difficulty;
+        this.author=author;
+    }
 
     private void setDifficult() {
         Program.inout.write("Выберите сложность лабы: easy, normal, hard, impossible, insane");
@@ -84,10 +93,17 @@ public class LabWork implements Comparable<LabWork> {
 
     public Person getAuthor(){return author;}
 
-    private Integer getId() {
+    public Integer getId() {
         return id;
     }
     public Double getMinimalPoint(){return minimalPoint;}
+    public String getName(){return name;}
+    public Coordinates getCoordinates(){return coordinates;}
+    public LocalDate getCreationDate(){return creationDate;}
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
 
     @Override
     public String toString(){

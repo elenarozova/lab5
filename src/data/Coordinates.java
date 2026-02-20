@@ -11,6 +11,12 @@ public class Coordinates implements Comparable<Coordinates>{
         setX();
         setY();
     }
+
+    public Coordinates(Float x,Long y){
+        this.x=x;
+        this.y=y;
+    }
+
     private void setX(){
         Program.inout.write("Введите значение X:");
         String testX = CheckValues.checkValuesNull("X");

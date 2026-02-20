@@ -18,6 +18,13 @@ public class Person implements Comparable<Person>{
         setPassportID();
     }
 
+    public Person(String name,Double height,Double weight,String passportID){
+        this.name=name;
+        this.height=height;
+        this.weight=weight;
+        this.passportID=passportID;
+    }
+
     private void setPassportID() {
         Program.inout.write("Введите паспортные данные автора:");
         String passportID = Program.inout.read();
@@ -91,5 +98,21 @@ public class Person implements Comparable<Person>{
         int wCompare = Double.compare(this.weight,person.weight);
         if (wCompare!=0){return wCompare;}
         return Long.compare(this.passportID.length(),person.passportID.length());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassportID() {
+        return passportID;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public Double getWeight() {
+        return weight;
     }
 }
