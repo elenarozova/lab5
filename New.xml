@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<labWorks>
+  <entry>
+    <key>1</key>
+    <LabWork>
+      <id>3</id>
+      <nameLabWork>lab2</nameLabWork>
+      <coordinates>
+        <X>2.0</X>
+        <Y>2</Y>
+      </coordinates>
+      <date>2026-02-21</date>
+      <minimalPoint>1.0</minimalPoint>
+      <difficulty>EASY</difficulty>
+      <Person>
+        <nameAuthor>Lena</nameAuthor>
+        <height>170.0</height>
+        <weight>56.0</weight>
+        <passportNumber>796321</passportNumber>
+      </Person>
+    </LabWork>
+  </entry>
+  <entry>
+    <key>2</key>
+    <LabWork>
+      <id>2</id>
+      <nameLabWork>labprog1</nameLabWork>
+      <coordinates>
+        <X>4.0</X>
+        <Y>5</Y>
+      </coordinates>
+      <date>2026-02-21</date>
+      <minimalPoint>2.0</minimalPoint>
+      <difficulty>IMPOSSIBLE</difficulty>
+      <Person>
+        <nameAuthor>lena</nameAuthor>
+        <height>170.0</height>
+        <weight>80.0</weight>
+        <passportNumber>87654</passportNumber>
+      </Person>
+    </LabWork>
+  </entry>
+</labWorks>

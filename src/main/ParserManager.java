@@ -2,6 +2,7 @@ package main;
 
 import commands.*;
 import interfaces.Comands;
+import program.Program;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,15 +26,23 @@ public class ParserManager {
         commands.put("print_unique_author", new PrintUniqueAuthor());
         commands.put("print_field_descending_author", new PrintFieldDescendingAuthor());
         commands.put("save", new Save());
+        commands.put("execute_script", new ExecuteScript());
     }
     public boolean parse(String line){
         String[] command = line.split(" ");
         if (commands.containsKey(command[0])){
             Comands com = commands.get(command[0]);
-            com.implementCommand();
+            try {
+                com.implementCommand();
+            } catch (Exception e) {
+                Program.inout.write("Ошибка при выполнении команды");
+                Program.inout.setScriptError(true);
+                return false;
+            }
             return true;
         }
         else {
+            Program.inout.setScriptError(true);
             return false;
         }
     }

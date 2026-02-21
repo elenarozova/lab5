@@ -43,21 +43,26 @@ public class FileManager {
             while (scanner.hasNextLine()) {
                 xmlContent.append(scanner.nextLine());
                 xmlContent.append("\n");
-
+            }
+            } catch (FileNotFoundException e) {
+                Program.inout.write("Файл с таким названием не был найден, поэтому данные не были загружены. Во время save данные будут выгружены в новый, указанный вами файл.");
+            }
 
                 String xmlString = xmlContent.toString();
                 InputStream is = new ByteArrayInputStream(xmlString.getBytes(StandardCharsets.UTF_8));
+
                 try {
                     document = builder.parse(is);
+
                     NodeList entries = document.getElementsByTagName("entry");
                     parserXML(entries);
                 } catch (Exception e) {
                     Program.inout.write("В файле не было найдено данных");
                 }
-            }
-        } catch (FileNotFoundException e) {
-        Program.inout.write("Файл с таким названием не был найден, поэтому данные не были загружены. Во время save данные будут выгружены в новый, указанный вами файл.");
-    }
+
+
+
+
 
     }
 
