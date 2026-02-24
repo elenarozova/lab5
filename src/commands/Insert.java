@@ -2,6 +2,7 @@ package commands;
 
 import data.LabWork;
 import interfaces.Comands;
+import main.CheckValues;
 import program.Program;
 
 public class Insert implements Comands {
@@ -21,7 +22,7 @@ public class Insert implements Comands {
         Program.inout.write("Введите ключ в виде числа:");
         while (true) {
             try {
-                idi = Integer.valueOf(Program.inout.read());
+                idi = Integer.valueOf(CheckValues.checkValuesNull("ключ"));
                 break;
             } catch (NumberFormatException e) {
                 Program.inout.write("Ключ должен быть типа int");

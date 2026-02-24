@@ -18,12 +18,12 @@ public class Program {
     public void run(){
         inout.write("Добро пожаловать");
         inout.write("Введите название файла, из которого брать данные и куда их записывать:");
-        nameFile = inout.read();
+        nameFile = CheckValues.checkValuesNull("Имя файла");
         fileManager.readXML(nameFile);
         inout.write("Введите help, чтобы узнать о командах");
         while (true){
             inout.write("Введите команду:");
-            String line = inout.read();
+            String line = inout.read().trim();
             boolean flag= parser.parse(line);
             if (!flag){inout.write("Такой команды не существует");}
         }

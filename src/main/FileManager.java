@@ -8,6 +8,8 @@ import data.Person;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import program.Program;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -28,15 +30,15 @@ public class FileManager {
     DocumentBuilder builder;
     Document document;
 
-    public FileManager(){
+    public FileManager() {
         try {
             builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+            Program.inout.write("eeeeeeeeee");
         }
     }
 
-    public void readXML(String filename){
+    public void readXML(String filename) {
         File file = new File(filename);
         StringBuilder xmlContent = new StringBuilder();
         try (Scanner scanner = new Scanner(file)) {
@@ -44,31 +46,29 @@ public class FileManager {
                 xmlContent.append(scanner.nextLine());
                 xmlContent.append("\n");
             }
-            } catch (FileNotFoundException e) {
-                Program.inout.write("Файл с таким названием не был найден, поэтому данные не были загружены. Во время save данные будут выгружены в новый, указанный вами файл.");
-            }
+        } catch (FileNotFoundException e) {
+            Program.inout.write("Файл с таким названием не был найден, поэтому данные не были загружены. Во время save данные будут выгружены в новый, указанный вами файл.");
+        }
 
-                String xmlString = xmlContent.toString();
-                InputStream is = new ByteArrayInputStream(xmlString.getBytes(StandardCharsets.UTF_8));
+        String xmlString = xmlContent.toString();
+        if (xmlString.trim().isEmpty()) {
+            return;
+        }
+        InputStream is = new ByteArrayInputStream(xmlString.getBytes(StandardCharsets.UTF_8));
 
-                try {
-                    document = builder.parse(is);
-
-                    NodeList entries = document.getElementsByTagName("entry");
-                    parserXML(entries);
-                } catch (Exception e) {
-                    Program.inout.write("В файле не было найдено данных");
-                }
-
-
-
+        try {
+            document = builder.parse(is);
+            NodeList entries = document.getElementsByTagName("entry");
+            parserXML(entries);
+        } catch (SAXException | IOException e) {
+            Program.inout.write("В файле не было найдено данных");
+        }
 
 
     }
 
 
-
-    public void writeXML(String filename){
+    public void writeXML(String filename) {
         document = builder.newDocument();
         Element Collection = document.createElement("labWorks");
         document.appendChild(Collection);
@@ -77,8 +77,8 @@ public class FileManager {
     }
 
 
-    private void parseMyElements(Document document, Element Collection){
-        for (int i: Program.colman.getLabWork().keySet()){
+    private void parseMyElements(Document document, Element Collection) {
+        for (int i : Program.colman.getLabWork().keySet()) {
             Element entry = document.createElement("entry");
             Collection.appendChild(entry);
 
@@ -90,27 +90,27 @@ public class FileManager {
             Element LabWorkElement = document.createElement("LabWork");
             entry.appendChild(LabWorkElement);
 
-            addTextElement(LabWorkElement,"id",labwork.getId(), document);
-            addTextElement(LabWorkElement,"nameLabWork",labwork.getName(), document);
+            addTextElement(LabWorkElement, "id", labwork.getId(), document);
+            addTextElement(LabWorkElement, "nameLabWork", labwork.getName(), document);
 
             Element coordinatesElement = document.createElement("coordinates");
             LabWorkElement.appendChild(coordinatesElement);
-            addTextElement(coordinatesElement,"X",labwork.getCoordinates().getX(), document);
-            addTextElement(coordinatesElement,"Y",labwork.getCoordinates().getY(), document);
+            addTextElement(coordinatesElement, "X", labwork.getCoordinates().getX(), document);
+            addTextElement(coordinatesElement, "Y", labwork.getCoordinates().getY(), document);
 
-            addTextElement(LabWorkElement,"date",labwork.getCreationDate(), document);
+            addTextElement(LabWorkElement, "date", labwork.getCreationDate(), document);
 
-            addTextElement(LabWorkElement,"minimalPoint",labwork.getMinimalPoint(), document);
+            addTextElement(LabWorkElement, "minimalPoint", labwork.getMinimalPoint(), document);
 
-            addTextElement(LabWorkElement,"difficulty",labwork.getDifficulty(), document);
+            addTextElement(LabWorkElement, "difficulty", labwork.getDifficulty(), document);
 
             Element pesonElement = document.createElement("Person");
             LabWorkElement.appendChild(pesonElement);
 
-            addTextElement(pesonElement,"nameAuthor",labwork.getAuthor().getName(), document);
-            addTextElement(pesonElement,"height",labwork.getAuthor().getHeight(), document);
-            addTextElement(pesonElement,"weight",labwork.getAuthor().getWeight(), document);
-            addTextElement(pesonElement,"passportNumber",labwork.getAuthor().getPassportID(), document);
+            addTextElement(pesonElement, "nameAuthor", labwork.getAuthor().getName(), document);
+            addTextElement(pesonElement, "height", labwork.getAuthor().getHeight(), document);
+            addTextElement(pesonElement, "weight", labwork.getAuthor().getWeight(), document);
+            addTextElement(pesonElement, "passportNumber", labwork.getAuthor().getPassportID(), document);
         }
     }
 
@@ -121,7 +121,7 @@ public class FileManager {
     }
 
 
-    public void saveCollectionToFile(String filename,Document document) {
+    public void saveCollectionToFile(String filename, Document document) {
         try {
             TransformerFactory tf = TransformerFactory.newInstance();
             Transformer transformer = tf.newTransformer();
@@ -134,13 +134,16 @@ public class FileManager {
 
             try (FileWriter fileWriter = new FileWriter(filename)) {
                 fileWriter.write(xmlString);
+            } catch (IOException e) {
+                Program.inout.write("бебебеебебебе");
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Program.inout.write("Не удалось считать данные");
         }
     }
-    private void parserXML(NodeList entries){
+
+    private void parserXML(NodeList entries) {
         for (int i = 0; i < entries.getLength(); i++) {
             Element entry = (Element) entries.item(i);
 

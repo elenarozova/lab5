@@ -1,5 +1,6 @@
 package data;
 
+import main.CheckValues;
 import main.Generate;
 import program.Program;
 
@@ -14,7 +15,7 @@ public class LabWork implements Comparable<LabWork> {
     private Difficulty difficulty; //Поле может быть null
     private Person author;//Поле не может быть null
 
-    public LabWork(){
+    public LabWork() {
         id = Generate.generateId();
         setName();
         coordinates = new Coordinates();
@@ -23,25 +24,21 @@ public class LabWork implements Comparable<LabWork> {
         setDifficult();
         author = new Person();
     }
-    public LabWork(Integer id, String name, Coordinates coordinates,LocalDate creationDate, Double minimalPoint,Difficulty difficulty, Person author){
-        this.id=id;
+
+    public LabWork(Integer id, String name, Coordinates coordinates, LocalDate creationDate, Double minimalPoint, Difficulty difficulty, Person author) {
+        this.id = id;
         this.name = name;
-        this.coordinates=coordinates;
-        this.creationDate=creationDate;
-        this.minimalPoint=minimalPoint;
-        this.difficulty=difficulty;
-        this.author=author;
+        this.coordinates = coordinates;
+        this.creationDate = creationDate;
+        this.minimalPoint = minimalPoint;
+        this.difficulty = difficulty;
+        this.author = author;
     }
 
     private void setDifficult() {
         Program.inout.write("Выберите сложность лабы: easy, normal, hard, impossible, insane");
         String test = Program.inout.read();
-        while (test.isEmpty()) {
-            Program.inout.write("Сложность не может быть null");
-            Program.inout.write("Выберите сложность лабы: easy, normal, hard, impossible, insane");
-            test = Program.inout.read();
-        }
-        Difficulty difficult = switch (test){
+        Difficulty difficult = switch (test) {
             case "easy" -> Difficulty.EASY;
             case "normal" -> Difficulty.NORMAL;
             case "hard" -> Difficulty.HARD;
@@ -49,64 +46,63 @@ public class LabWork implements Comparable<LabWork> {
             case "insane" -> Difficulty.INSANE;
             default -> Difficulty.NORMAL;
         };
-        this.difficulty=difficult;
+        this.difficulty = difficult;
     }
 
     private void setMinimalPoint() {
         Program.inout.write("Введите минимальное значение:");
         while (true) {
-            String test = Program.inout.read();
-
-            while (test.isEmpty()) {
-                Program.inout.write("Минимальное значение не может быть null");
-                Program.inout.write("Введите минимальное значение:");
-                test = Program.inout.read();
-            }
-
-                try {
-                    double minimalPoint = Double.parseDouble(test);
-                    while (minimalPoint <= 0) {
-                        Program.inout.write("Минимальное значение не может быть меньше 0");
-                        Program.inout.write("Введите минимальное значение:");
-                        minimalPoint = Long.parseLong(Program.inout.read());
-                    }
-                    this.minimalPoint = minimalPoint;
-                    break;
-                } catch (NumberFormatException e) {
-                    Program.inout.write("Минимальное значение должно быть типа double");
+            String test = CheckValues.checkValuesNull("минимальное значение");
+            try {
+                double minimalPoint = Double.parseDouble(test);
+                while (minimalPoint <= 0) {
+                    Program.inout.write("Минимальное значение не может быть меньше 0");
+                    Program.inout.write("Введите минимальное значение:");
+                    minimalPoint = Long.parseLong(Program.inout.read());
                 }
+                this.minimalPoint = minimalPoint;
+                break;
+            } catch (NumberFormatException e) {
+                Program.inout.write("Минимальное значение должно быть типа double");
+            }
         }
     }
 
-    private void setName(){
+    private void setName() {
         Program.inout.write("Введите название лабораторной работы:");
-        String testName = Program.inout.read();
-
-        while (testName.isEmpty()) {
-            Program.inout.write("NAME не может быть null");
-            Program.inout.write("Введите название лабораторной работы: ");
-            testName = Program.inout.read();
-        }
-
-        name = testName;
+        String testName = CheckValues.checkValuesNull("Название лабораторной работы");
     }
 
-    public Person getAuthor(){return author;}
+    public Person getAuthor() {
+        return author;
+    }
 
     public Integer getId() {
         return id;
     }
-    public Double getMinimalPoint(){return minimalPoint;}
-    public String getName(){return name;}
-    public Coordinates getCoordinates(){return coordinates;}
-    public LocalDate getCreationDate(){return creationDate;}
+
+    public Double getMinimalPoint() {
+        return minimalPoint;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
 
     public Difficulty getDifficulty() {
         return difficulty;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return " | "
                 + id
                 + " | " + name
@@ -115,23 +111,31 @@ public class LabWork implements Comparable<LabWork> {
                 + " | " + minimalPoint
                 + " | " + difficulty
                 + " | " + author.toString()
-                + " | " ;
+                + " | ";
     }
 
     @Override
     public int compareTo(LabWork o) {
-        int nameCompare = Long.compare(this.name.length(),o.name.length());
-        if (nameCompare!=0){return nameCompare;}
+        int nameCompare = Long.compare(this.name.length(), o.name.length());
+        if (nameCompare != 0) {
+            return nameCompare;
+        }
 
         int coordCompare = coordinates.compareTo(o.coordinates);
-        if (coordCompare!=0){return coordCompare;}
+        if (coordCompare != 0) {
+            return coordCompare;
+        }
 
-        int minCompare = Double.compare(this.minimalPoint,o.minimalPoint);
-        if (minCompare!=0){return minCompare;}
+        int minCompare = Double.compare(this.minimalPoint, o.minimalPoint);
+        if (minCompare != 0) {
+            return minCompare;
+        }
 
         int personCompare = author.compareTo(o.author);
-        if (personCompare!=0){return personCompare;}
+        if (personCompare != 0) {
+            return personCompare;
+        }
 
-        return Integer.compare(this.id,o.id);
+        return Integer.compare(this.id, o.id);
     }
 }
