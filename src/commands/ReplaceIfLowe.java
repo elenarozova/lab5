@@ -2,6 +2,7 @@ package commands;
 
 import data.LabWork;
 import interfaces.Comands;
+import main.CheckValues;
 import program.Program;
 
 public class ReplaceIfLowe implements Comands {
@@ -12,12 +13,10 @@ public class ReplaceIfLowe implements Comands {
         Program.inout.write("Введите ключ значения,которое хотите изменить:");
         while (true) {
             try {
-                id = Integer.parseInt(Program.inout.read());
+                id = Integer.parseInt(CheckValues.checkValuesNull("ключ значения,которое хотите изменить,"));
                 break;
             } catch (NumberFormatException e) {
                 Program.inout.write("Ключ должен быть int.");
-            } catch (NullPointerException e1) {
-                Program.inout.write("Ключ не должен быть null");
             }
         }
         if (Program.colman.getLabWork().containsKey(id)) {

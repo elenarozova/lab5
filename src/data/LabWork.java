@@ -70,7 +70,7 @@ public class LabWork implements Comparable<LabWork> {
 
     private void setName() {
         Program.inout.write("Введите название лабораторной работы:");
-        String testName = CheckValues.checkValuesNull("Название лабораторной работы");
+        name = CheckValues.checkValuesNull("Название лабораторной работы");
     }
 
     public Person getAuthor() {

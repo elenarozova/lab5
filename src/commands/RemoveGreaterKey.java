@@ -1,6 +1,7 @@
 package commands;
 
 import interfaces.Comands;
+import main.CheckValues;
 import program.Program;
 
 public class RemoveGreaterKey implements Comands {
@@ -8,7 +9,7 @@ public class RemoveGreaterKey implements Comands {
     public void implementCommand() {
         Program.inout.write("Введите ключ элемента, после которого все остальные необходимо удалить:");
         try {
-            int id = Integer.parseInt(Program.inout.read());
+            int id = Integer.parseInt(CheckValues.checkValuesNull("значение элемента, после которого все остальные необходимо удалить:"));
             for (int i : Program.colman.getLabWork().keySet()) {
                 if (i >= id) {
                     Program.colman.getLabWork().remove(i);

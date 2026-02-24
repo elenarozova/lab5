@@ -39,10 +39,9 @@ public class Coordinates implements Comparable<Coordinates> {
 
     private void setY() {
         Program.inout.write("Введите значение Y:");
-
-        String testY = CheckValues.checkValuesNull("Y");
         while (true) {
             try {
+                String testY = CheckValues.checkValuesNull("Y");
                 long y = Long.parseLong(testY);
                 while (y < -991) {
                     Program.inout.write("Y не может быть меньше -991");

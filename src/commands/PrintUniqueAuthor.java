@@ -23,4 +23,9 @@ public class PrintUniqueAuthor implements Comands {
             Program.inout.write(i.toString());
         }
     }
+
+    @Override
+    public String toString(){
+        return "Выводит всех авторов лабораторных работ.";
+    }
 }

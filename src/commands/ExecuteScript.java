@@ -1,13 +1,14 @@
 package commands;
 
 import interfaces.Comands;
+import main.CheckValues;
 import program.Program;
 
 public class ExecuteScript implements Comands {
     @Override
     public void implementCommand() {
         Program.inout.write("Введите название файла, из которого хотите читать скрипт:");
-        String filename = Program.inout.read();
+        String filename = CheckValues.checkValuesNull("название файла, из которого хотите читать скрипт");
         Program.inout.startFileReading(filename);
         if (!Program.inout.isReadingFromFile()) {
             return;

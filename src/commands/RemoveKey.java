@@ -2,13 +2,14 @@ package commands;
 
 import data.LabWork;
 import interfaces.Comands;
+import main.CheckValues;
 import program.Program;
 
 public class RemoveKey implements Comands {
     @Override
     public void implementCommand() {
         Program.inout.write("Введите ключ объекта, который хотите удалить:");
-        String keyStr = Program.inout.read();
+        String keyStr = CheckValues.checkValuesNull("ключ объекта, который хотите удалить,");
         try {
             Integer key = Integer.parseInt(keyStr);
             if (Program.colman.getLabWork().containsKey(key)) {

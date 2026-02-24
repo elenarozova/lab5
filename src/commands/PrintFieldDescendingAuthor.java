@@ -18,6 +18,6 @@ public class PrintFieldDescendingAuthor extends PrintUniqueAuthor{
     }
     @Override
     public String toString(){
-        return "Выводит всех авторов лабороторных работ и их данные в порядке убывания";
+        return "Выводит всех авторов лабораторных работ и их данные в порядке убывания";
     }
 }

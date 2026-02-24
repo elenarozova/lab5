@@ -18,5 +18,5 @@ public class RemoveGreater implements Comands {
         Program.inout.write("Все элементы, которые больше заданного, были удалены.");
     }
     @Override
-    public String toString(){return "УДаляет все элементы, которые больше заданного элемента";}
+    public String toString(){return "Удаляет все элементы, которые больше заданного элемента";}
 }
