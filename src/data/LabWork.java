@@ -6,6 +6,18 @@ import program.Program;
 
 import java.time.LocalDate;
 
+/**
+ * Класс, представляющий лабораторную работу.
+ * Содержит полную информацию о лабораторной работе: идентификатор, название,
+ * координаты, дату создания, минимальный балл, сложность и автора.
+ * Реализует интерфейс {@link Comparable} для сравнения работ по набору критериев.
+ *
+ * @author Елена
+ * @see Coordinates
+ * @see Difficulty
+ * @see Person
+ */
+
 public class LabWork implements Comparable<LabWork> {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -35,6 +47,12 @@ public class LabWork implements Comparable<LabWork> {
         this.author = author;
     }
 
+    /**
+     * Устанавливает сложность лабораторной работы через пользовательский ввод.
+     * Предлагает выбрать из списка доступных значений enum {@link Difficulty}.
+     * При некорректном вводе устанавливает значение по умолчанию NORMAL.
+     */
+
     private void setDifficult() {
         Program.inout.write("Выберите сложность лабы: easy, normal, hard, impossible, insane");
         String test = Program.inout.read();
@@ -48,6 +66,12 @@ public class LabWork implements Comparable<LabWork> {
         };
         this.difficulty = difficult;
     }
+
+    /**
+     * Устанавливает минимальный балл через пользовательский ввод.
+     * Проверяет, что введённое значение является числом типа double и больше 0.
+     * При некорректном вводе запрашивает значение повторно.
+     */
 
     private void setMinimalPoint() {
         Program.inout.write("Введите минимальное значение:");

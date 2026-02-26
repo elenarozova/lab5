@@ -3,6 +3,14 @@ import interfaces.Comands;
 import java.util.Map;
 import program.Program;
 
+/**
+ * Команда для вывода справки по всем доступным командам.
+ * Отображает список всех команд с их описаниями.
+ *
+ * @author Елена
+ * @see Comands
+ * @see Program#parser
+ */
 
 public class Helps implements Comands {
     Map<String,Comands> command;

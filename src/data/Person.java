@@ -5,6 +5,14 @@ import program.Program;
 
 import java.util.Comparator;
 
+/**
+ * Класс, представляющий автора лабораторной работы.
+ * Содержит персональные данные: имя, рост, вес и паспортные данные.
+ * Реализует интерфейс {@link Comparable} для сравнения авторов по набору критериев.
+ *
+ * @author Елена
+ */
+
 public class Person implements Comparable<Person> {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Double height; //Поле не может быть null, Значение поля должно быть больше 0
@@ -25,6 +33,11 @@ public class Person implements Comparable<Person> {
         this.weight = weight;
         this.passportID = passportID;
     }
+
+    /**
+     * Устанавливает паспортные данные через пользовательский ввод.
+     * Проверяет, что строка не пустая и её длина не превышает 26 символов.
+     */
 
     private void setPassportID() {
         Program.inout.write("Введите паспортные данные автора:");

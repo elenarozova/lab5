@@ -1,12 +1,22 @@
 package commands;
 
 import data.Person;
-import interfaces.Comands;
 import program.Program;
 
 import java.util.NavigableSet;
-import java.util.Set;
 import java.util.TreeSet;
+
+/**
+ * Команда для вывода всех уникальных авторов лабораторных работ в порядке убывания.
+ * Наследует функциональность сбора авторов от {@link PrintUniqueAuthor},
+ * но переопределяет метод {@link #printSet(TreeSet)} для вывода элементов
+ * в обратном порядке (по убыванию).
+ *
+ * @author Елена
+ * @see PrintUniqueAuthor
+ * @see Person
+ * @see NavigableSet
+ */
 
 public class PrintFieldDescendingAuthor extends PrintUniqueAuthor{
     @Override

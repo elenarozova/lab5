@@ -5,6 +5,16 @@ import interfaces.Comands;
 import main.CheckValues;
 import program.Program;
 
+/**
+ * Команда для удаления элемента из коллекции по его ключу.
+ * Запрашивает у пользователя ключ и удаляет соответствующий элемент,
+ * если он существует в коллекции.
+ *
+ * @author Елена
+ * @see Comands
+ * @see Program#colman
+ */
+
 public class RemoveKey implements Comands {
     @Override
     public void implementCommand() {

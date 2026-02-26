@@ -3,6 +3,15 @@ package data;
 import main.CheckValues;
 import program.Program;
 
+/**
+ * Класс, представляющий координаты лабораторной работы.
+ * Содержит координаты X и Y с ограничениями на допустимые значения.
+ * Реализует интерфейс {@link Comparable} для сравнения координат.
+ *
+ * @author Елена
+ * @version 1.0
+ */
+
 public class Coordinates implements Comparable<Coordinates> {
     private Float x; //Максимальное значение поля: 254, Поле не может быть null
     private Long y; //Значение поля должно быть больше -991, Поле не может быть null
@@ -16,6 +25,11 @@ public class Coordinates implements Comparable<Coordinates> {
         this.x = x;
         this.y = y;
     }
+
+    /**
+     * Устанавливает координату X через пользовательский ввод.
+     * Проверяет, что введённое значение является числом типа float и не превышает 254.
+     */
 
     private void setX() {
         Program.inout.write("Введите значение X:");
@@ -36,6 +50,11 @@ public class Coordinates implements Comparable<Coordinates> {
         }
 
     }
+
+    /**
+     * Устанавливает координату Y через пользовательский ввод.
+     * Проверяет, что введённое значение является числом типа long и больше -991.
+     */
 
     private void setY() {
         Program.inout.write("Введите значение Y:");

@@ -5,6 +5,17 @@ import interfaces.Comands;
 import main.CheckValues;
 import program.Program;
 
+/**
+ * Команда для обновления значения элемента коллекции по его ключу.
+ * Заменяет существующий элемент новым объектом LabWork, создаваемым
+ * через пользовательский ввод.
+ *
+ * @author Елена
+ * @see Comands
+ * @see LabWork
+ * @see Program#colman
+ */
+
 public class Update implements Comands {
     @Override
     public void implementCommand() {

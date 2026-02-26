@@ -3,6 +3,15 @@ package commands;
 import interfaces.Comands;
 import program.Program;
 
+/**
+ * Команда для вывода информации о коллекции.
+ * Отображает тип коллекции, количество элементов и время её создания.
+ *
+ * @author Елена
+ * @see Comands
+ * @see Program#colman
+ */
+
 public class Info implements Comands {
     @Override
     public void implementCommand() {

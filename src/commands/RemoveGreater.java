@@ -3,6 +3,18 @@ package commands;
 import interfaces.Comands;
 import program.Program;
 
+/**
+ * Команда для удаления всех элементов, которые больше заданного.
+ * Пользователь вводит элемент, затем все элементы коллекции,
+ * которые больше этого эталона (согласно {@link data.LabWork#compareTo}),
+ * удаляются из коллекции.
+ *
+ * @author Елена
+ * @see Comands
+ * @see Insert
+ * @see Program#colman
+ */
+
 public class RemoveGreater implements Comands {
     @Override
     public void implementCommand() {

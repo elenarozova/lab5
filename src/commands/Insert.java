@@ -5,6 +5,17 @@ import interfaces.Comands;
 import main.CheckValues;
 import program.Program;
 
+/**
+ * Команда для добавления нового элемента в коллекцию с заданным ключом.
+ * Запрашивает у пользователя ключ, затем создаёт новый объект LabWork
+ * и вставляет его в коллекцию по указанному ключу.
+ *
+ * @author Елена
+ * @see Comands
+ * @see LabWork
+ * @see Program#colman
+ */
+
 public class Insert implements Comands {
     private Integer idi;
     private LabWork lab;

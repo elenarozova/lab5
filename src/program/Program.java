@@ -2,6 +2,27 @@ package program;
 
 import main.*;
 
+/**
+ * Главный класс приложения, содержащий точку входа и управляющий основным циклом программы.
+ * Хранит статические ссылки на все основные компоненты системы:
+ * <ul>
+ *   <li>{@link #inout} - менеджер ввода-вывода</li>
+ *   <li>{@link #parser} - менеджер команд</li>
+ *   <li>{@link #colman} - менеджер коллекции</li>
+ *   <li>{@link #fileManager} - менеджер файлов</li>
+ *   <li>{@link #generate} - генератор ID</li>
+ *   <li>{@link #nameFile} - имя текущего рабочего файла</li>
+ * </ul>
+ * Все компоненты доступны статически, что позволяет командам обращаться к ним без передачи ссылок.
+ *
+ * @author Елена
+ * @see InputOutputManage
+ * @see ParserManager
+ * @see CollectionManager
+ * @see FileManager
+ * @see Generate
+ */
+
 public class Program {
     public static Generate generate;
     public static InputOutputManage inout;

@@ -7,9 +7,19 @@ import program.Program;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Менеджер для парсинга и выполнения пользовательских команд.
+ * Содержит словарь доступных команд и обеспечивает их выполнение *
+ *
+ * @author Елена
+ * @see Comands
+ * @see Program
+ */
+
 public class ParserManager {
     private Map<String, Comands> commands;
-    public ParserManager(){
+
+    public ParserManager() {
         commands = new HashMap<>();
         commands.put("help", new Helps());
         commands.put("exit", new Exit());
@@ -28,9 +38,21 @@ public class ParserManager {
         commands.put("save", new Save());
         commands.put("execute_script", new ExecuteScript());
     }
-    public boolean parse(String line){
+
+    /**
+     * Выполняет парсинг и обработку введённой пользователем команды.
+     * Разбивает входную строку по пробелам, извлекает имя команды и выполняет соответствующую команду.
+     * Если команда не найдена или при её выполнении возникла ошибка, возвращает false
+     *
+     * @param line строка, введённая пользователем (содержит имя команды и, возможно, аргументы)
+     * @return true, если команда успешно найдена и выполнена, иначе false
+     * @see Program#inout
+     * @see Comands#implementCommand()
+     */
+
+    public boolean parse(String line) {
         String[] command = line.split(" ");
-        if (commands.containsKey(command[0])){
+        if (commands.containsKey(command[0])) {
             Comands com = commands.get(command[0]);
             try {
                 com.implementCommand();
@@ -40,8 +62,7 @@ public class ParserManager {
                 return false;
             }
             return true;
-        }
-        else {
+        } else {
             Program.inout.setScriptError(true);
             return false;
         }

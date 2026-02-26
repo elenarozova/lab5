@@ -4,9 +4,19 @@ import data.Person;
 import interfaces.Comands;
 import program.Program;
 
-import java.util.HashSet;
-import java.util.Set;
+
 import java.util.TreeSet;
+
+/**
+ * Команда для вывода уникальных авторов лабораторных работ.
+ * Собирает всех авторов из коллекции в TreeSet (что автоматически удаляет дубликаты
+ * благодаря естественному порядку сортировки {@link Person}) и выводит их.
+ *
+ * @author Елена
+ * @see Comands
+ * @see Person
+ * @see Program#colman
+ */
 
 public class PrintUniqueAuthor implements Comands {
     @Override

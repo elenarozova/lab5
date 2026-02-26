@@ -5,6 +5,15 @@ import interfaces.Comands;
 import main.CheckValues;
 import program.Program;
 
+/**
+ * Команда для фильтрации элементов коллекции по полю minimalPoint.
+ * Выводит все элементы, у которых значение minimalPoint меньше заданного.
+ *
+ * @author Елена
+ * @see Comands
+ * @see LabWork#getMinimalPoint()
+ */
+
 public class FilterLessThanMinimalPoint implements Comands {
     Double minPoint;
     @Override

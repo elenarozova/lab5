@@ -25,6 +25,16 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Менеджер для работы с XML-файлами, обеспечивающий загрузку и сохранение коллекции LabWork.
+ * Отвечает за чтение коллекции из XML-файла и запись текущего состояния коллекции в XML-файл.
+ * Использует DOM-парсер для обработки XML-структуры.
+ *
+ * @author Елена
+ * @see LabWork
+ * @see Program#colman
+ */
+
 public class FileManager {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder;
@@ -34,9 +44,18 @@ public class FileManager {
         try {
             builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            Program.inout.write("eeeeeeeeee");
+            Program.inout.write("");
         }
     }
+
+    /**
+     * Читает XML-файл с указанным именем и загружает данные в коллекцию Program.colman.
+     * Если файл не найден, выводит предупреждение (данные не загружаются, но при сохранении создастся новый файл).
+     * Если файл пуст или не содержит данных, метод завершается без ошибки.
+     * При успешном чтении вызывает {@link #parserXML(NodeList)} для разбора элементов.
+     *
+     * @param filename имя файла для чтения (путь к XML-файлу)
+     */
 
     public void readXML(String filename) {
         File file = new File(filename);
@@ -67,6 +86,13 @@ public class FileManager {
 
     }
 
+    /**
+     * Записывает текущее состояние коллекции в XML-файл.
+     * Создаёт новый DOM-документ, заполняет его элементами коллекции через {@link #parseMyElements(Document, Element)}
+     * и сохраняет в файл с помощью {@link #saveCollectionToFile(String, Document)}.
+     *
+     * @param filename имя файла для записи
+     */
 
     public void writeXML(String filename) {
         document = builder.newDocument();
@@ -76,6 +102,17 @@ public class FileManager {
         saveCollectionToFile(filename, document);
     }
 
+    /**
+     * Внутренний метод для преобразования коллекции LabWork в XML-элементы.
+     * Создаёт структуру XML, соответствующую формату хранения LabWork:
+     * - entry (содержит key и LabWork)
+     * - LabWork (содержит id, nameLabWork, coordinates, date, minimalPoint, difficulty, Person)
+     * - coordinates (содержит X, Y)
+     * - Person (содержит nameAuthor, height, weight, passportNumber)
+     *
+     * @param document   DOM-документ, в который добавляются элементы
+     * @param Collection корневой элемент коллекции (labWorks)
+     */
 
     private void parseMyElements(Document document, Element Collection) {
         for (int i : Program.colman.getLabWork().keySet()) {
@@ -120,6 +157,13 @@ public class FileManager {
         parent.appendChild(elem);
     }
 
+    /**
+     * Сохраняет DOM-документ в файл с XML-форматированием.
+     * Применяет отступы (2 пробела) для читаемости XML.
+     *
+     * @param filename имя файла для сохранения
+     * @param document DOM-документ, который нужно сохранить
+     */
 
     public void saveCollectionToFile(String filename, Document document) {
         try {
@@ -135,13 +179,22 @@ public class FileManager {
             try (FileWriter fileWriter = new FileWriter(filename)) {
                 fileWriter.write(xmlString);
             } catch (IOException e) {
-                Program.inout.write("бебебеебебебе");
+                Program.inout.write("Не удалось сохранить данные в файл");
             }
 
         } catch (Exception e) {
             Program.inout.write("Не удалось считать данные");
         }
     }
+
+    /**
+     * Внутренний метод для разбора XML-элементов и создания объектов LabWork.
+     * Извлекает из каждого элемента entry ключ и соответствующий LabWork,
+     * восстанавливает все вложенные объекты (Coordinates, Person) и добавляет их в коллекцию Program.colman.
+     *
+     * @param entries список элементов entry из XML-документа
+     * @see Program#colman
+     */
 
     private void parserXML(NodeList entries) {
         for (int i = 0; i < entries.getLength(); i++) {

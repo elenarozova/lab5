@@ -4,6 +4,17 @@ import interfaces.Comands;
 import main.CheckValues;
 import program.Program;
 
+/**
+ * Команда для выполнения скрипта из файла.
+ * Читает указанный файл и последовательно выполняет содержащиеся в нём команды.
+ * При возникновении ошибки выполнение скрипта прерывается.
+ *
+ * @author Елена
+ * @see Comands
+ * @see Program#inout
+ * @see Program#parser
+ */
+
 public class ExecuteScript implements Comands {
     @Override
     public void implementCommand() {

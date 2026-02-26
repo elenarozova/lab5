@@ -4,6 +4,15 @@ import interfaces.Comands;
 import main.CheckValues;
 import program.Program;
 
+/**
+ * Команда для удаления всех элементов, ключ которых превышает заданное значение.
+ * Удаляет все элементы с ключом, большим или равным указанному пользователем.
+ *
+ * @author Елена
+ * @see Comands
+ * @see Program#colman
+ */
+
 public class RemoveGreaterKey implements Comands {
     @Override
     public void implementCommand() {

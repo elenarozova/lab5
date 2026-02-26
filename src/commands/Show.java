@@ -3,6 +3,16 @@ package commands;
 import interfaces.Comands;
 import program.Program;
 
+/**
+ * Команда для отображения всех элементов коллекции.
+ * Выводит каждый элемент коллекции в формате "ключ + строковое представление элемента".
+ *
+ * @author Елена
+ * @see Comands
+ * @see Program#colman
+ * @see data.LabWork#toString()
+ */
+
 public class Show implements Comands {
     @Override
     public void implementCommand() {

@@ -5,6 +5,18 @@ import interfaces.Comands;
 import main.CheckValues;
 import program.Program;
 
+/**
+ * Команда для замены значения по ключу, если новое значение меньше старого.
+ * Создаёт новый объект LabWork и сравнивает его с существующим по ключу.
+ * Если новый объект меньше существующего (согласно {@link LabWork#compareTo}),
+ * выполняет замену.
+ *
+ * @author Елена
+ * @see Comands
+ * @see LabWork
+ * @see Program#colman
+ */
+
 public class ReplaceIfLowe implements Comands {
     Integer id;
 
