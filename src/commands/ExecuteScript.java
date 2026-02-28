@@ -25,7 +25,7 @@ public class ExecuteScript implements Comands {
             return;
         }
         while (Program.inout.hasNextLine()) {
-            String command = Program.inout.read();
+            String command = CheckValues.checkValuesNull("название команды");
             if (command.trim().isEmpty()) {
                 continue;
             }
@@ -35,7 +35,7 @@ public class ExecuteScript implements Comands {
                 break;
             }
         }
-        Program.inout.stopFileReading();
+        Program.inout.stopFileReading(filename);
     }
 
     @Override

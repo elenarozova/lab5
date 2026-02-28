@@ -55,7 +55,7 @@ public class LabWork implements Comparable<LabWork> {
 
     private void setDifficult() {
         Program.inout.write("Выберите сложность лабы: easy, normal, hard, impossible, insane");
-        String test = Program.inout.read();
+        String test = CheckValues.checkValuesNull("сложность ");
         Difficulty difficult = switch (test) {
             case "easy" -> Difficulty.EASY;
             case "normal" -> Difficulty.NORMAL;

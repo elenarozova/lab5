@@ -1,7 +1,13 @@
 package main;
 
+import program.Program;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -16,6 +22,7 @@ public class InputOutputManage {
     Scanner fileScan;
     private boolean readFromFile;
     private boolean scriptHasError;
+    private List<String> openedFiles = new ArrayList<>();
 
     public InputOutputManage(){
         scan = new Scanner(System.in);
@@ -36,7 +43,13 @@ public class InputOutputManage {
             return fileScan.nextLine();
         }
         else {
-            return scan.nextLine();
+                if (scan.hasNextLine()) {
+                    return scan.nextLine();
+                } else {
+                    Program.inout.write("(Ctrl + D), ввод закончен.");
+                    System.exit(0);
+                    return "";
+                }
         }
     }
 
@@ -46,8 +59,16 @@ public class InputOutputManage {
      */
 
     public void startFileReading(String filename) {
+        if (openedFiles.contains(filename)) {
+            write("Ошибка: рекурсивный вызов скрипта! Файл " + filename + " уже открыт.");
+            write("Стек открытых файлов: " + openedFiles);
+            scriptHasError = true;
+            readFromFile = false;
+            return;
+        }
         try {
             fileScan = new Scanner(new File(filename));
+            openedFiles.add(filename);
             readFromFile=true;
             scriptHasError = false;
         } catch (FileNotFoundException e) {
@@ -60,14 +81,14 @@ public class InputOutputManage {
      * Завершает режим чтения из файла.
      */
 
-    public void stopFileReading() {
+    public void stopFileReading(String filename) {
         if (fileScan != null) {
             fileScan.close();
             fileScan = null;
         }
+        openedFiles.remove(filename); // Удаляем файл из стека
         readFromFile = false;
     }
-
     /**
      * Проверяет, есть ли ещё строки для чтения в текущем источнике.
      * В режиме файла проверяет, остались ли непрочитанные строки.

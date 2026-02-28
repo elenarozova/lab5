@@ -16,6 +16,8 @@ public class Clear implements Comands {
     @Override
     public void implementCommand() {
         Program.colman.getLabWork().clear();
+        Program.inout.write("Вся коллекция была удалена");
+        Program.parser.parse("show");
     }
     @Override
     public String toString(){

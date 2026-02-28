@@ -32,6 +32,7 @@ public class ReplaceIfLowe implements Comands {
             }
         }
         if (Program.colman.getLabWork().containsKey(id)) {
+            Program.inout.write(String.valueOf(Program.colman.getLabWork().get(id)));
             LabWork lab = new LabWork();
             if (lab.compareTo(Program.colman.getLabWork().get(id))<0){
                 Program.colman.getLabWork().replace(id,lab);
