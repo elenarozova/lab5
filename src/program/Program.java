@@ -36,10 +36,14 @@ public class Program {
         colman=new CollectionManager();
         fileManager = new FileManager();
     }
-    public void run(){
+    public void run(String name){
         inout.write("Добро пожаловать");
-        inout.write("Введите название файла, из которого брать данные и куда их записывать:");
-        nameFile = CheckValues.checkValuesNull("Имя файла");
+        if (name == null) {
+            inout.write("Введите название файла, из которого брать данные и куда их записывать:");
+            nameFile = CheckValues.checkValuesNull("Имя файла");
+        } else {
+            nameFile=name;
+        }
         fileManager.readXML(nameFile);
         inout.write("Введите help, чтобы узнать о командах");
         while (true){

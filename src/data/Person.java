@@ -52,42 +52,38 @@ public class Person implements Comparable<Person> {
 
     private void setWeight() {
         Program.inout.write("Введите вес автора:");
-        String testWeight = CheckValues.checkValuesNull("вес автора");
         while (true) {
             try {
-                double weight = Double.parseDouble(testWeight);
-                while (weight <= 0) {
+                String testWeight = CheckValues.checkValuesNull("вес автора");
+                double weight = Double.parseDouble(testWeight.replace(",","."));
+                if (weight <= 0) {
                     Program.inout.write("Вес должен быть больше нуля");
-                    Program.inout.write("Введите значение веса:");
-                    weight = Double.parseDouble(Program.inout.read());
+                } else {
+                    this.weight = (double) weight;
+                    break;
                 }
-                this.weight = (double) weight;
-                break;
             } catch (NumberFormatException e) {
-                Program.inout.write("Y должно быть типа double");
+                Program.inout.write("Вес должно быть типа double");
             }
         }
     }
 
     private void setHeight() {
         Program.inout.write("Введите рост автора:");
-        String testHeight = CheckValues.checkValuesNull("рост автора");
         while (true) {
             try {
-                double height = Double.parseDouble(testHeight);
-                while (height <= 0) {
+                String testHeight = CheckValues.checkValuesNull("рост автора");
+                double height = Double.parseDouble(testHeight.replace(",","."));
+                if (height <= 0) {
                     Program.inout.write("Рост должен быть больше нуля");
-                    Program.inout.write("Введите значение роста:");
-                    height = Double.parseDouble(Program.inout.read());
+                } else {
+                    this.height = (double) height;
+                    break;
                 }
-                this.height = (double) height;
-                break;
             } catch (NumberFormatException e) {
-                Program.inout.write("Y должно быть типа double");
-                ;
+                Program.inout.write("Рост должно быть типа double");
             }
         }
-
     }
 
     private void setName() {

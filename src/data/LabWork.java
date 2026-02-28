@@ -78,14 +78,13 @@ public class LabWork implements Comparable<LabWork> {
         while (true) {
             String test = CheckValues.checkValuesNull("минимальное значение");
             try {
-                double minimalPoint = Double.parseDouble(test);
-                while (minimalPoint <= 0) {
+                double minimalPoint = Double.parseDouble(test.replace(",","."));
+                if (minimalPoint <= 0) {
                     Program.inout.write("Минимальное значение не может быть меньше 0");
-                    Program.inout.write("Введите минимальное значение:");
-                    minimalPoint = Long.parseLong(Program.inout.read());
+                } else {
+                    this.minimalPoint = minimalPoint;
+                    break;
                 }
-                this.minimalPoint = minimalPoint;
-                break;
             } catch (NumberFormatException e) {
                 Program.inout.write("Минимальное значение должно быть типа double");
             }

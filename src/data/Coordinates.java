@@ -33,17 +33,18 @@ public class Coordinates implements Comparable<Coordinates> {
 
     private void setX() {
         Program.inout.write("Введите значение X:");
-        String testX = CheckValues.checkValuesNull("X");
+
         while (true) {
             try {
-                float x = Float.parseFloat(testX);
-                while (x > 254) {
+                String testX = CheckValues.checkValuesNull("X");
+                float x = Float.parseFloat(testX.replace(",","."));
+                if (x > 254) {
                     Program.inout.write("X не может быть больше 254");
                     Program.inout.write("Введите значение X для координат:");
-                    x = Float.parseFloat(Program.inout.read());
+                } else {
+                    this.x = x;
+                    break;
                 }
-                this.x = x;
-                break;
             } catch (NumberFormatException e) {
                 Program.inout.write("X должно быть типа float");
             }
@@ -57,20 +58,19 @@ public class Coordinates implements Comparable<Coordinates> {
      */
 
     private void setY() {
-        Program.inout.write("Введите значение Y:");
         while (true) {
+            Program.inout.write("Введите значение Y:");
+            String testY = CheckValues.checkValuesNull("Y");
             try {
-                String testY = CheckValues.checkValuesNull("Y");
                 long y = Long.parseLong(testY);
-                while (y < -991) {
+                if (y < -991) {
                     Program.inout.write("Y не может быть меньше -991");
-                    Program.inout.write("Введите значение Y:");
-                    y = Long.parseLong(Program.inout.read());
+                } else {
+                    this.y = (long) y;
+                    break;
                 }
-                this.y = (long) y;
-                break;
             } catch (NumberFormatException e) {
-                Program.inout.write("Y должно быть типа float");
+                Program.inout.write("Y должно быть типа long");
             }
         }
 

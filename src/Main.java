@@ -11,7 +11,10 @@ import program.Program;
 public class Main {
     public static void main(String[] args) {
         Program prog=new Program ();
-        prog.run();
-
+        if (args.length == 1) {
+            prog.run(args[0]);
+        } else {
+            prog.run(null);
+        }
     }
 }
