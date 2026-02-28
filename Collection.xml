@@ -23,20 +23,20 @@
   <entry>
     <key>2</key>
     <LabWork>
-      <id>2</id>
+      <id>3</id>
       <nameLabWork>lab2</nameLabWork>
       <coordinates>
-        <X>55.0</X>
-        <Y>66</Y>
+        <X>44.0</X>
+        <Y>3</Y>
       </coordinates>
-      <date>2026-02-20</date>
-      <minimalPoint>7.0</minimalPoint>
-      <difficulty>IMPOSSIBLE</difficulty>
+      <date>2026-02-28</date>
+      <minimalPoint>23.0</minimalPoint>
+      <difficulty>HARD</difficulty>
       <Person>
-        <nameAuthor>Lena</nameAuthor>
-        <height>170.0</height>
-        <weight>56.0</weight>
-        <passportNumber>796321</passportNumber>
+        <nameAuthor>Tanya</nameAuthor>
+        <height>160.0</height>
+        <weight>30.0</weight>
+        <passportNumber>232333</passportNumber>
       </Person>
     </LabWork>
   </entry>

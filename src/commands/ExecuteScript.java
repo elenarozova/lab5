@@ -16,10 +16,18 @@ import program.Program;
  */
 
 public class ExecuteScript implements Comands {
+    private String filename;
     @Override
-    public void implementCommand() {
-        Program.inout.write("Введите название файла, из которого хотите читать скрипт:");
-        String filename = CheckValues.checkValuesNull("название файла, из которого хотите читать скрипт");
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            Program.inout.write("Введите название файла, из которого хотите читать скрипт:");
+            filename = CheckValues.checkValuesNull("название файла, из которого хотите читать скрипт");
+        } else if (args.length==1){
+            filename=args[0].trim();
+        } else {
+            Program.inout.write("Вы ввели больше аргументов, чем надо, первый будет принят как название скрипта, а остальные будут откинуты");
+            filename=args[0].trim();
+        }
         Program.inout.startFileReading(filename);
         if (!Program.inout.isReadingFromFile()) {
             return;

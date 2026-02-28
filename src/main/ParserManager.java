@@ -4,6 +4,7 @@ import commands.*;
 import interfaces.Comands;
 import program.Program;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,15 +48,15 @@ public class ParserManager {
      * @param line строка, введённая пользователем (содержит имя команды и, возможно, аргументы)
      * @return true, если команда успешно найдена и выполнена, иначе false
      * @see Program#inout
-     * @see Comands#implementCommand()
+     * @see Comands#implementCommand(String[] args)
      */
 
     public boolean parse(String line) {
-        String[] command = line.split(" ");
+        String[] command = line.trim().replaceAll("\\s+", " ").split(" ");
         if (commands.containsKey(command[0])) {
             Comands com = commands.get(command[0]);
             try {
-                com.implementCommand();
+                com.implementCommand(Arrays.copyOfRange(command,1,command.length));
             } catch (Exception e) {
                 Program.inout.write("Ошибка при выполнении команды");
                 Program.inout.setScriptError(true);

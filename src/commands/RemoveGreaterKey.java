@@ -14,11 +14,22 @@ import program.Program;
  */
 
 public class RemoveGreaterKey implements Comands {
+    String testMin;
+
     @Override
-    public void implementCommand() {
-        Program.inout.write("Введите ключ элемента, после которого все остальные необходимо удалить:");
+    public void implementCommand(String[] args) {
+        int lenght = args.length;
+        if (lenght == 0) {
+            Program.inout.write("Введите значение элемента, после которого все остальные необходимо удалить:");
+            testMin = CheckValues.checkValuesNull("значение элемента, после которого все остальные необходимо удалить:");
+        } else if (lenght == 1){
+            testMin = args[0].trim();
+        } else {
+            Program.inout.write("Было введено больше одного параметра, все превышающие параметры не учитываются");
+            testMin=args[0].trim();
+        }
         try {
-            int id = Integer.parseInt(CheckValues.checkValuesNull("значение элемента, после которого все остальные необходимо удалить:"));
+            int id = Integer.parseInt(testMin);
             for (int i : Program.colman.getLabWork().keySet()) {
                 if (i >= id) {
                     Program.colman.getLabWork().remove(i);

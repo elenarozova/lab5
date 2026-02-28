@@ -17,15 +17,19 @@ public class Helps implements Comands {
 
 
     @Override
-    public void implementCommand() {
-        command = Program.parser.getCommands();
-        Program.inout.write("Справка по доступным командам: ");
-        for (String i: command.keySet()){
-            Program.inout.write(i + ": "+ command.get(i));
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            command = Program.parser.getCommands();
+            Program.inout.write("Справка по доступным командам: ");
+            for (String i : command.keySet()) {
+                Program.inout.write(i + ": " + command.get(i));
+            }
+        } else {
+            Program.inout.write("У этой команды нет параметров");
         }
     }
     @Override
     public String toString(){
-        return "Выводит значения всех комманд";
+        return "Выводит значения всех команд";
     }
 }

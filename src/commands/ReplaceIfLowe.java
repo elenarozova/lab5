@@ -19,16 +19,28 @@ import program.Program;
 
 public class ReplaceIfLowe implements Comands {
     Integer id;
+    String idi;
 
     @Override
-    public void implementCommand() {
-        Program.inout.write("Введите ключ значения,которое хотите изменить:");
+    public void implementCommand(String[] args) {
+
+        int lenght = args.length;
         while (true) {
+            if (lenght==0) {
+                Program.inout.write("Введите ключ значения,которое хотите изменить:");
+                idi = CheckValues.checkValuesNull("ключ значения,которое хотите изменить");
+            } else if (lenght==1){
+                idi = args[0].trim();
+            } else {
+                Program.inout.write("Было введено больше одного параметра, все превышающие параметры не учитываются");
+                idi= args[0].trim();
+            }
             try {
-                id = Integer.parseInt(CheckValues.checkValuesNull("ключ значения,которое хотите изменить,"));
+                id = Integer.parseInt(idi);
                 break;
             } catch (NumberFormatException e) {
                 Program.inout.write("Ключ должен быть int.");
+                lenght=0;
             }
         }
         if (Program.colman.getLabWork().containsKey(id)) {

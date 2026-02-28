@@ -20,12 +20,16 @@ import java.util.TreeSet;
 
 public class PrintUniqueAuthor implements Comands {
     @Override
-    public void implementCommand() {
-        TreeSet<Person> authors = new TreeSet<>();
-        for (int i : Program.colman.getLabWork().keySet()) {
-            authors.add(Program.colman.getLabWork().get(i).getAuthor());
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            TreeSet<Person> authors = new TreeSet<>();
+            for (int i : Program.colman.getLabWork().keySet()) {
+                authors.add(Program.colman.getLabWork().get(i).getAuthor());
+            }
+            printSet(authors);
+        } else {
+            Program.inout.write("У этой команды нет параметров");
         }
-        printSet(authors);
     }
 
     protected void printSet(TreeSet<Person> authors){

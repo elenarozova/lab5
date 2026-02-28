@@ -11,5 +11,5 @@ import data.LabWork;
  */
 
 public interface Comands {
-    void implementCommand();
+    void implementCommand(String[] args);
 }

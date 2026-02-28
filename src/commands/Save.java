@@ -18,8 +18,12 @@ import program.Program;
 
 public class Save implements Comands {
     @Override
-    public void implementCommand() {
-        Program.fileManager.writeXML(Program.nameFile);
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            Program.fileManager.writeXML(Program.nameFile);
+        } else {
+            Program.inout.write("У этой команды нет параметров");
+        }
     }
 
     @Override

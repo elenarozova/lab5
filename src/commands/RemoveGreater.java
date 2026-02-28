@@ -18,15 +18,17 @@ import program.Program;
 
 public class RemoveGreater implements Comands {
     @Override
-    public void implementCommand() {
-        Program.inout.write("Введите элемент, с которым будут сравниваться другие");
-        LabWork lab = new LabWork();
-        for (int i:Program.colman.getLabWork().keySet()){
-            if (lab.compareTo(Program.colman.getLabWork().get(i))<0){
-                Program.colman.getLabWork().remove(i);
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            Program.inout.write("Введите элемент, с которым будут сравниваться другие");
+            LabWork lab = new LabWork();
+            for (int i : Program.colman.getLabWork().keySet()) {
+                if (lab.compareTo(Program.colman.getLabWork().get(i)) < 0) {
+                    Program.colman.getLabWork().remove(i);
+                }
             }
-        }
-        Program.inout.write("Все элементы, которые больше заданного, были удалены.");
+            Program.inout.write("Все элементы, которые больше заданного, были удалены.");
+        } else {Program.inout.write("У этой команды нет параметров");}
     }
     @Override
     public String toString(){return "Удаляет все элементы, которые больше заданного элемента";}

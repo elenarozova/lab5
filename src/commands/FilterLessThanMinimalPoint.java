@@ -16,24 +16,34 @@ import program.Program;
 
 public class FilterLessThanMinimalPoint implements Comands {
     Double minPoint;
+    String testMin;
     @Override
-    public void implementCommand() {
-        Program.inout.write("Введите значения минимального значения:");
+    public void implementCommand(String[] args) {
+        int lenght = args.length;
         while (true) {
+            if (lenght == 0) {
+                Program.inout.write("Введите значения минимального значения:");
+                testMin = CheckValues.checkValuesNull("минимального значения");
+            } else if (lenght == 1){
+                testMin = args[0].trim();
+            } else {
+                Program.inout.write("Было введено больше одного параметра, все превышающие параметры не учитываются");
+                testMin=args[0].trim();
+            }
+
             try {
-                minPoint = Double.parseDouble(CheckValues.checkValuesNull("минимального значения"));
-                for (int i:Program.colman.getLabWork().keySet()){
-                    if (minPoint>Program.colman.getLabWork().get(i).getMinimalPoint()){
+                minPoint = Double.parseDouble(testMin.replace(",","."));
+                for (int i : Program.colman.getLabWork().keySet()) {
+                    if (minPoint > Program.colman.getLabWork().get(i).getMinimalPoint()) {
                         Program.inout.write(Program.colman.getLabWork().get(i).toString());
                     }
                 }
                 break;
             } catch (NumberFormatException e) {
                 Program.inout.write("Значение должно быть double.");
+                lenght=0;
             }
         }
-
-
     }
 
     @Override

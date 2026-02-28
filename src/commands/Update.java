@@ -17,10 +17,18 @@ import program.Program;
  */
 
 public class Update implements Comands {
+    String keyStr;
     @Override
-    public void implementCommand() {
-        Program.inout.write("Введите ключ объекта, который хотите поменять:");
-        String keyStr = CheckValues.checkValuesNull("ключ объекта, который хотите поменять");
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            Program.inout.write("Введите ключ объекта, который хотите удалить:");
+            keyStr = CheckValues.checkValuesNull("ключ объекта, который хотите удалить,");
+        } else if (args.length==1){
+            keyStr = args[0].trim();
+        } else {
+            Program.inout.write("Было введено больше одного параметра, все превышающие параметры не учитываются");
+            keyStr= args[0].trim();
+        }
         try {
             Integer key = Integer.parseInt(keyStr);
             if (Program.colman.getLabWork().containsKey(key)) {

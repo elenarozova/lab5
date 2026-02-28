@@ -14,10 +14,14 @@ import program.Program;
 
 public class Info implements Comands {
     @Override
-    public void implementCommand() {
-        Program.inout.write("Тип коллекции: TreeMap");
-        Program.inout.write("Количество элементов: " + Program.colman.getLabWork().size());
-        Program.inout.write("Время создания коллекции: "+ Program.colman.getTime());
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            Program.inout.write("Тип коллекции: TreeMap");
+            Program.inout.write("Количество элементов: " + Program.colman.getLabWork().size());
+            Program.inout.write("Время создания коллекции: " + Program.colman.getTime());
+        } else {
+            Program.inout.write("У этой команды нет параметров");
+        }
     }
 
     @Override

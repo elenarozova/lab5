@@ -206,6 +206,7 @@ public class FileManager {
 
             String idStr = labElem.getElementsByTagName("id").item(0).getTextContent();
             Integer id = Integer.parseInt(idStr);
+            Generate.setIdi(id+1);
 
             String name = labElem.getElementsByTagName("nameLabWork").item(0).getTextContent();
 

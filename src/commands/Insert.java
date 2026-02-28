@@ -5,6 +5,7 @@ import interfaces.Comands;
 import main.CheckValues;
 import program.Program;
 
+
 /**
  * Команда для добавления нового элемента в коллекцию с заданным ключом.
  * Запрашивает у пользователя ключ, затем создаёт новый объект LabWork
@@ -20,8 +21,18 @@ public class Insert implements Comands {
     private Integer idi;
     private LabWork lab;
     @Override
-    public void implementCommand() {
-        setKey();
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            setKey();
+        }
+        else if (args.length==1) {
+            try{
+                idi = Integer.valueOf(args[0].trim());
+            } catch (NumberFormatException e) {
+                Program.inout.write("Вы ввели неподходящий ключ, он должен быть int");
+                setKey();
+            }
+        }
         lab = new LabWork();
         Program.colman.insert(idi,lab);
 

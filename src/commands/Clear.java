@@ -14,10 +14,11 @@ import program.Program;
 
 public class Clear implements Comands {
     @Override
-    public void implementCommand() {
-        Program.colman.getLabWork().clear();
-        Program.inout.write("Вся коллекция была удалена");
-        Program.parser.parse("show");
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            Program.colman.getLabWork().clear();
+            Program.inout.write("Вся коллекция была удалена");
+        } else {Program.inout.write("У этой команды нет параметров");}
     }
     @Override
     public String toString(){

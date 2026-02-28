@@ -14,9 +14,13 @@ import program.Program;
 
 public class Exit implements Comands {
     @Override
-    public void implementCommand() {
-        Program.inout.closeScan();
-        System.exit(0);
+    public void implementCommand(String[] args) {
+        if (args.length==0) {
+            Program.inout.closeScan();
+            System.exit(0);
+        } else {
+            Program.inout.write("У этой команды нет параметров");
+        }
     }
     @Override
     public String toString(){
