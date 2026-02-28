@@ -1,5 +1,6 @@
 package commands;
 
+import data.LabWork;
 import interfaces.Comands;
 import program.Program;
 
@@ -19,11 +20,9 @@ public class RemoveGreater implements Comands {
     @Override
     public void implementCommand() {
         Program.inout.write("Введите элемент, с которым будут сравниваться другие");
-        Insert ins = new Insert();
-        ins.implementCommand();
-        Integer[] keys = Program.colman.getLabWork().keySet().toArray(new Integer[0]);
-        for (int i:keys){
-            if (ins.getLab().compareTo(Program.colman.getLabWork().get(i))<0){
+        LabWork lab = new LabWork();
+        for (int i:Program.colman.getLabWork().keySet()){
+            if (lab.compareTo(Program.colman.getLabWork().get(i))<0){
                 Program.colman.getLabWork().remove(i);
             }
         }
