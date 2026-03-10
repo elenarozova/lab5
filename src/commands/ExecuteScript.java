@@ -32,6 +32,7 @@ public class ExecuteScript implements Comands {
         if (!Program.inout.isReadingFromFile()) {
             return;
         }
+        boolean hadError = false;
         while (Program.inout.hasNextLine()) {
             String command = CheckValues.checkValuesNull("название команды");
             if (command.trim().isEmpty()) {
@@ -40,10 +41,14 @@ public class ExecuteScript implements Comands {
             Program.parser.parse(command);
             if (Program.inout.isScriptHasError()) {
                 Program.inout.write("В файле была совершена ошибка ввода данных.");
+                hadError = true;
                 break;
             }
         }
         Program.inout.stopFileReading(filename);
+        if (!hadError) {
+            Program.inout.setScriptError(false);
+        }
     }
 
     @Override

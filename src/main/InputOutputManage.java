@@ -5,10 +5,7 @@ import program.Program;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Управляет вводом-выводом.
@@ -23,6 +20,8 @@ public class InputOutputManage {
     private boolean readFromFile;
     private boolean scriptHasError;
     private List<String> openedFiles = new ArrayList<>();
+    private Stack<Scanner> scannerStack = new Stack<>();
+    private Stack<Boolean> fileReadingStack = new Stack<>();
 
     public InputOutputManage(){
         scan = new Scanner(System.in);
@@ -67,9 +66,13 @@ public class InputOutputManage {
             return;
         }
         try {
-            fileScan = new Scanner(new File(filename));
+            Scanner newScan = new Scanner(new File(filename));
+            scannerStack.push(fileScan);
+            fileReadingStack.push(readFromFile);
+
+            fileScan = newScan;
             openedFiles.add(filename);
-            readFromFile=true;
+            readFromFile = true;
             scriptHasError = false;
         } catch (FileNotFoundException e) {
             write("Файл не найден: " + filename);
@@ -84,10 +87,16 @@ public class InputOutputManage {
     public void stopFileReading(String filename) {
         if (fileScan != null) {
             fileScan.close();
-            fileScan = null;
         }
-        openedFiles.remove(filename); // Удаляем файл из стека
-        readFromFile = false;
+        openedFiles.remove(filename);
+
+        if (!scannerStack.isEmpty()) {
+            fileScan = scannerStack.pop();
+            readFromFile = fileReadingStack.pop();
+        } else {
+            fileScan = null;
+            readFromFile = false;
+        }
     }
     /**
      * Проверяет, есть ли ещё строки для чтения в текущем источнике.

@@ -21,8 +21,8 @@ public class Update implements Comands {
     @Override
     public void implementCommand(String[] args) {
         if (args.length==0) {
-            Program.inout.write("Введите ключ объекта, который хотите удалить:");
-            keyStr = CheckValues.checkValuesNull("ключ объекта, который хотите удалить,");
+            Program.inout.write("Введите ключ объекта, который хотите обновить:");
+            keyStr = CheckValues.checkValuesNull("ключ объекта, который хотите обновить:");
         } else if (args.length==1){
             keyStr = args[0].trim();
         } else {
