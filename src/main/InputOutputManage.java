@@ -38,8 +38,14 @@ public class InputOutputManage {
      * @return считанная строка
      */
     public String read(){
-        if (readFromFile){
-            return fileScan.nextLine();
+        if (readFromFile) {
+            if (fileScan.hasNextLine()) {
+                return fileScan.nextLine();
+            } else {
+                write("Файл скрипта закончился. Возврат в консоль.");
+                stopFileReading("");  // переключаем обратно на консоль
+                return read();      // читаем уже с консоли
+            }
         }
         else {
                 if (scan.hasNextLine()) {

@@ -34,7 +34,7 @@ public class ExecuteScript implements Comands {
         }
         boolean hadError = false;
         while (Program.inout.hasNextLine()) {
-            String command = CheckValues.checkValuesNull("название команды");
+            String command = Program.inout.read();
             if (command.trim().isEmpty()) {
                 continue;
             }
