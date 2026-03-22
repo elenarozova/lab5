@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<labWorks>
+  <entry>
+    <key>12</key>
+    <LabWork>
+      <id>1</id>
+      <nameLabWork>jhgf</nameLabWork>
+      <coordinates>
+        <X>3.76</X>
+        <Y>77</Y>
+      </coordinates>
+      <date>2026-02-28</date>
+      <minimalPoint>4.987</minimalPoint>
+      <difficulty>HARD</difficulty>
+      <Person>
+        <nameAuthor>lena</nameAuthor>
+        <height>170.0</height>
+        <weight>768.0</weight>
+        <passportNumber>736387</passportNumber>
+      </Person>
+    </LabWork>
+  </entry>
+</labWorks>

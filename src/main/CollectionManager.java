@@ -1,6 +1,7 @@
 package main;
 
 import data.LabWork;
+import program.Program;
 
 import java.util.Date;
 import java.util.TreeMap;
@@ -33,5 +34,15 @@ public class CollectionManager {
 
     public Date getTime() {
         return time;
+    }
+
+    public Integer maxKey(){
+        int maxKey = 0;
+        for (LabWork lab:labWork.values()){
+            if(lab.getId()>maxKey){
+                maxKey=lab.getId();
+            }
+        }
+        return maxKey;
     }
 }

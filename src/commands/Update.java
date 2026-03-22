@@ -32,7 +32,7 @@ public class Update implements Comands {
         try {
             Integer key = Integer.parseInt(keyStr);
             if (Program.colman.getLabWork().containsKey(key)) {
-                Program.colman.getLabWork().replace(key, new LabWork());
+                Program.colman.getLabWork().replace(key, new LabWork.Builder().doLab());
             } else {
                 Program.inout.write("Такого ключа нет");
             }

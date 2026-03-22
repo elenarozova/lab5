@@ -82,6 +82,7 @@ public class FileManager {
         } catch (SAXException | IOException e) {
             Program.inout.write("В файле не было найдено данных");
         }
+        Generate.setIdi(Program.colman.maxKey()+1);
 
 
     }
@@ -206,7 +207,6 @@ public class FileManager {
 
             String idStr = labElem.getElementsByTagName("id").item(0).getTextContent();
             Integer id = Integer.parseInt(idStr);
-            Generate.setIdi(id+1);
 
             String name = labElem.getElementsByTagName("nameLabWork").item(0).getTextContent();
 
@@ -240,7 +240,15 @@ public class FileManager {
 
             Person author = new Person(nameAuthor, height, weight, passport);
 
-            LabWork labWork = new LabWork(id, name, cor, date, minPoint, diff, author);
+            LabWork labWork = new LabWork.Builder(true)
+                    .idS(id)
+                    .nameS(name)
+                    .coordinatesS(cor)
+                    .creationDateS(date)
+                    .minimalPointS(minPoint)
+                    .difficultS(diff)
+                    .authorS(author)
+                    .doLab();
             Program.colman.getLabWork().put(key, labWork);
         }
     }

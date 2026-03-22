@@ -36,12 +36,15 @@ public class Coordinates implements Comparable<Coordinates> {
 
         while (true) {
             try {
-                String testX = CheckValues.checkValuesNull("X");
-                float x = Float.parseFloat(testX.replace(",","."));
-                if (x > 254) {
+                String testX = CheckValues.checkValuesNull("X").replace(",",".");
+                float x = Float.parseFloat(testX);
+                if (x > 254 ) {
                     Program.inout.write("X не может быть больше 254");
                     Program.inout.write("Введите значение X для координат:");
-                } else {
+                } else if (!testX.equals(String.valueOf(x))){
+                    Program.inout.write("Данные не подходят для float.");
+                }
+                else {
                     this.x = x;
                     break;
                 }

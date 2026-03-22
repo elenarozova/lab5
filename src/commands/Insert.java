@@ -33,7 +33,7 @@ public class Insert implements Comands {
                 setKey();
             }
         }
-        lab = new LabWork();
+        lab = new LabWork.Builder().doLab();
         Program.colman.insert(idi,lab);
 
     }

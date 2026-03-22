@@ -24,7 +24,7 @@ public class RemoveGreater implements Comands {
     public void implementCommand(String[] args) {
         if (args.length==0) {
             Program.inout.write("Введите элемент, с которым будут сравниваться другие");
-            LabWork lab = new LabWork();
+            LabWork lab = new LabWork.Builder().doLab();
             List<Integer> keyS = new ArrayList<>(Program.colman.getLabWork().keySet());
             for (int i : keyS) {
                 if (lab.compareTo(Program.colman.getLabWork().get(i)) < 0) {

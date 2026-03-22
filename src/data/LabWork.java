@@ -19,7 +19,7 @@ import java.time.LocalDate;
  */
 
 public class LabWork implements Comparable<LabWork> {
-    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private  Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
@@ -27,73 +27,127 @@ public class LabWork implements Comparable<LabWork> {
     private Difficulty difficulty; //Поле может быть null
     private Person author;//Поле не может быть null
 
-    public LabWork() {
-        id = Generate.generateId();
-        setName();
-        coordinates = new Coordinates();
-        creationDate = LocalDate.now();
-        setMinimalPoint();
-        setDifficult();
-        author = new Person();
+
+    private LabWork(Builder builder){
+        id = builder.id;
+        name = builder.name;
+        coordinates = builder.coordinates;
+        creationDate = builder.creationDate;
+        minimalPoint = builder.minimalPoint;
+        difficulty = builder.difficulty;
+        author = builder.author;
     }
 
-    public LabWork(Integer id, String name, Coordinates coordinates, LocalDate creationDate, Double minimalPoint, Difficulty difficulty, Person author) {
-        this.id = id;
-        this.name = name;
-        this.coordinates = coordinates;
-        this.creationDate = creationDate;
-        this.minimalPoint = minimalPoint;
-        this.difficulty = difficulty;
-        this.author = author;
-    }
 
-    /**
-     * Устанавливает сложность лабораторной работы через пользовательский ввод.
-     * Предлагает выбрать из списка доступных значений enum {@link Difficulty}.
-     * При некорректном вводе устанавливает значение по умолчанию NORMAL.
-     */
+    public static class Builder {
+        Integer id ;//Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+        String name ; //Поле не может быть null, Строка не может быть пустой
+        Coordinates coordinates ; //Поле не может быть null
+        java.time.LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+        double minimalPoint ; //Значение поля должно быть больше 0
+        Difficulty difficulty; //Поле может быть null
+        Person author;
 
-    private void setDifficult() {
-        Program.inout.write("Выберите сложность лабы: easy, normal, hard, impossible, insane");
-        String test = CheckValues.checkValuesNull("сложность ");
-        Difficulty difficult = switch (test) {
-            case "easy" -> Difficulty.EASY;
-            case "normal" -> Difficulty.NORMAL;
-            case "hard" -> Difficulty.HARD;
-            case "impossible" -> Difficulty.IMPOSSIBLE;
-            case "insane" -> Difficulty.INSANE;
-            default -> Difficulty.NORMAL;
-        };
-        this.difficulty = difficult;
-    }
-
-    /**
-     * Устанавливает минимальный балл через пользовательский ввод.
-     * Проверяет, что введённое значение является числом типа double и больше 0.
-     * При некорректном вводе запрашивает значение повторно.
-     */
-
-    private void setMinimalPoint() {
-        Program.inout.write("Введите минимальное значение:");
-        while (true) {
-            String test = CheckValues.checkValuesNull("минимальное значение");
-            try {
-                double minimalPoint = Double.parseDouble(test.replace(",","."));
-                if (minimalPoint <= 0) {
-                    Program.inout.write("Минимальное значение не может быть меньше 0");
-                } else {
-                    this.minimalPoint = minimalPoint;
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                Program.inout.write("Минимальное значение должно быть типа double");
-            }
+        public Builder(){
+            id = Generate.generateId();//Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+            name = setName(); //Поле не может быть null, Строка не может быть пустой
+            coordinates = new Coordinates(); //Поле не может быть null
+            creationDate= LocalDate.now(); //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+            minimalPoint = setMinimalPoint(); //Значение поля должно быть больше 0
+            difficulty = setDifficult(); //Поле может быть null
+            author = new Person();
         }
-    }
+        public Builder(boolean n){}
 
-    private void setName() {
-        Program.inout.write("Введите название лабораторной работы:");
-        name = CheckValues.checkValuesNull("Название лабораторной работы");
+        public LabWork doLab(){
+            return new LabWork(this);
+        }
+
+        public Builder nameS(String name){
+            this.name = name;
+            return this;
+        }
+        public Builder idS(Integer id){
+            this.id = id;
+            return this;
+        }
+        public Builder coordinatesS(Coordinates cor){
+            this.coordinates = cor;
+            return this;
+        }
+        public Builder creationDateS(LocalDate date){
+            creationDate = date;
+            return this;
+        }
+        public Builder minimalPointS(double minimalPoint){
+            this.minimalPoint = minimalPoint;
+            return this;
+        }
+        public Builder difficultS(Difficulty difficulty){
+            this.difficulty = difficulty;
+            return this;
+        }
+        public Builder authorS(Person author){
+            this.author= author;
+            return this;
+        }
+
+
+
+
+        /**
+         * Устанавливает сложность лабораторной работы через пользовательский ввод.
+         * Предлагает выбрать из списка доступных значений enum {@link Difficulty}.
+         * При некорректном вводе устанавливает значение по умолчанию NORMAL.
+         */
+
+         private Difficulty setDifficult() {
+            Program.inout.write("Выберите сложность лабы: easy, normal, hard, impossible, insane");
+            String test = CheckValues.checkValuesNull("сложность ");
+            Difficulty difficult = switch (test) {
+                case "easy" -> Difficulty.EASY;
+                case "normal" -> Difficulty.NORMAL;
+                case "hard" -> Difficulty.HARD;
+                case "impossible" -> Difficulty.IMPOSSIBLE;
+                case "insane" -> Difficulty.INSANE;
+                default -> Difficulty.NORMAL;
+            };
+            return difficult;
+        }
+
+        /**
+         * Устанавливает минимальный балл через пользовательский ввод.
+         * Проверяет, что введённое значение является числом типа double и больше 0.
+         * При некорректном вводе запрашивает значение повторно.
+         */
+
+        private double setMinimalPoint () {
+            double minimalPoint;
+            while (true) {
+                Program.inout.write("Введите минимальное значение:");
+                String test = CheckValues.checkValuesNull("минимальное значение").replace(",", ".");
+                try {
+                    minimalPoint = Double.parseDouble(test);
+                    if (!test.equals(String.valueOf(minimalPoint))){
+                        Program.inout.write("Было превышено допустимое количество символов для double");
+                    }
+                    else if (minimalPoint <= 0) {
+                        Program.inout.write("Минимальное значение не может быть меньше 0");
+                    } else {
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    Program.inout.write("Минимальное значение должно быть типа double");
+                }
+            }
+            return minimalPoint;
+        }
+
+        private String setName () {
+            Program.inout.write("Введите название лабораторной работы:");
+            name = CheckValues.checkValuesNull("Название лабораторной работы");
+            return name;
+        }
     }
 
     public Person getAuthor() {

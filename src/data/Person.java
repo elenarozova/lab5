@@ -58,6 +58,8 @@ public class Person implements Comparable<Person> {
                 double weight = Double.parseDouble(testWeight.replace(",","."));
                 if (weight <= 0) {
                     Program.inout.write("Вес должен быть больше нуля");
+                } else if (!testWeight.equals(String.valueOf(weight))) {
+                    Program.inout.write("Данные не подходят для типа double");
                 } else {
                     this.weight = (double) weight;
                     break;
@@ -72,10 +74,12 @@ public class Person implements Comparable<Person> {
         Program.inout.write("Введите рост автора:");
         while (true) {
             try {
-                String testHeight = CheckValues.checkValuesNull("рост автора");
-                double height = Double.parseDouble(testHeight.replace(",","."));
-                if (height <= 0) {
+                String testHeight = CheckValues.checkValuesNull("рост автора").replace(",",".");
+                double height = Double.parseDouble(testHeight);
+                if (height <= 0 ) {
                     Program.inout.write("Рост должен быть больше нуля");
+                } else if (!testHeight.equals(String.valueOf(height))){
+                    Program.inout.write("Данные не подходят");
                 } else {
                     this.height = (double) height;
                     break;

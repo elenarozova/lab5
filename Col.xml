@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<labWorks>
+  <entry>
+    <key>5</key>
+    <LabWork>
+      <id>1</id>
+      <nameLabWork>gdfs</nameLabWork>
+      <coordinates>
+        <X>23.32</X>
+        <Y>243</Y>
+      </coordinates>
+      <date>2026-03-14</date>
+      <minimalPoint>0.0</minimalPoint>
+      <difficulty>NORMAL</difficulty>
+      <Person>
+        <nameAuthor>32</nameAuthor>
+        <height>32.0</height>
+        <weight>32.0</weight>
+        <passportNumber>32</passportNumber>
+      </Person>
+    </LabWork>
+  </entry>
+</labWorks>
