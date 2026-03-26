@@ -51,11 +51,12 @@ public class Person implements Comparable<Person> {
     }
 
     private void setWeight() {
-        Program.inout.write("Введите вес автора:");
         while (true) {
+            Program.inout.write("Введите вес автора:");
             try {
-                String testWeight = CheckValues.checkValuesNull("вес автора");
-                double weight = Double.parseDouble(testWeight.replace(",","."));
+                String testWeight = CheckValues.checkValuesNull("вес автора").replace(",",".");
+                if (!testWeight.contains(".")){testWeight = testWeight+ ".0";}
+                double weight = Double.parseDouble(testWeight);
                 if (weight <= 0) {
                     Program.inout.write("Вес должен быть больше нуля");
                 } else if (!testWeight.equals(String.valueOf(weight))) {
@@ -71,10 +72,11 @@ public class Person implements Comparable<Person> {
     }
 
     private void setHeight() {
-        Program.inout.write("Введите рост автора:");
         while (true) {
+            Program.inout.write("Введите рост автора:");
             try {
                 String testHeight = CheckValues.checkValuesNull("рост автора").replace(",",".");
+                if (!testHeight.contains(".")){testHeight = testHeight+ ".0";}
                 double height = Double.parseDouble(testHeight);
                 if (height <= 0 ) {
                     Program.inout.write("Рост должен быть больше нуля");

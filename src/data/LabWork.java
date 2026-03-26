@@ -126,6 +126,7 @@ public class LabWork implements Comparable<LabWork> {
             while (true) {
                 Program.inout.write("Введите минимальное значение:");
                 String test = CheckValues.checkValuesNull("минимальное значение").replace(",", ".");
+                if (!test.contains(".")){test = test+ ".0";}
                 try {
                     minimalPoint = Double.parseDouble(test);
                     if (!test.equals(String.valueOf(minimalPoint))){

@@ -29,4 +29,5 @@ public class Show implements Comands {
     public String toString(){
         return "Выводит все элементы коллекции";
     }
+
 }

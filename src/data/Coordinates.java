@@ -37,6 +37,7 @@ public class Coordinates implements Comparable<Coordinates> {
         while (true) {
             try {
                 String testX = CheckValues.checkValuesNull("X").replace(",",".");
+                if (!testX.contains(".")){testX = testX + ".0";}
                 float x = Float.parseFloat(testX);
                 if (x > 254 ) {
                     Program.inout.write("X не может быть больше 254");
